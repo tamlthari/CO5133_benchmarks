@@ -37,7 +37,7 @@ done
 echo "threads,sense_barrier_episodes_sec,sense_backoff_episodes_sec,std_barrier_episodes_sec" > "${LABEL}_barrier.csv"
 for t in 1 2 4 6 8 12 16; do
     echo "[$LABEL Barrier] Threads=$t"
-    out=$(./bench_barrier $t 50000)
+    out=$(./bench_barrier $t 200000)
     sense=$(echo "$out" | grep -E "^Sense-Reversing Barrier:" | awk '{print $3}')
     sense_bo=$(echo "$out" | grep -E "^Sense-Reversing Barrier Backoff:" | awk '{print $4}')
     std_b=$(echo "$out" | grep -E "^std::barrier" | awk '{print $3}')
