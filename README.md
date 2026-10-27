@@ -17,6 +17,8 @@ mpicxx -O3 -std=c++20 -Iinclude src/mpi_distributed.cpp -o bench_mpi
 ```
 #### Run sample commands
 ```bash
+./bench_locks 8 5000 0 5003
+
 ./bench_barrier 4 50000
 ./bench_barrier 4 200000
 

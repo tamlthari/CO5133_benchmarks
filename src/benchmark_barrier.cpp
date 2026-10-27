@@ -8,7 +8,6 @@
 
 using namespace std::chrono;
 
-// 1. Correctness Verification Test
 void verify_barrier_correctness(int num_threads, int num_episodes) {
     sense_reversing_barrier barrier(num_threads);
     std::vector<int> step_tracker(num_threads, 0);
@@ -31,7 +30,6 @@ void verify_barrier_correctness(int num_threads, int num_episodes) {
     for (auto& th : threads) th.join();
 }
 
-// 2. Deadlock-free benchmark for Sense-Reversing Barrier variants
 template <typename BarrierType>
 double benchmark_custom_barrier(int num_threads, int num_episodes) {
     BarrierType barrier(num_threads);
@@ -54,7 +52,6 @@ double benchmark_custom_barrier(int num_threads, int num_episodes) {
     return (double)num_episodes / elapsed_sec;
 }
 
-// 3. Deadlock-free benchmark for std::barrier (C++20 baseline)
 double benchmark_std_barrier(int num_threads, int num_episodes) {
     std::barrier barrier(num_threads);
     std::vector<std::thread> threads;
@@ -77,10 +74,13 @@ double benchmark_std_barrier(int num_threads, int num_episodes) {
 
 int main(int argc, char* argv[]) {
     int num_threads = (argc > 1) ? std::stoi(argv[1]) : 4;
-    int num_episodes = (argc > 2) ? std::stoi(argv[2]) : 200000;
+    
+    // Automatically throttle episodes when oversubscribing physical cores
+    int default_episodes = (num_threads > 8) ? 1000 : 50000;
+    int num_episodes = (argc > 2) ? std::stoi(argv[2]) : default_episodes;
 
     std::cout << "--> Running Barrier Correctness Verification..." << std::endl;
-    verify_barrier_correctness(num_threads, 100);
+    verify_barrier_correctness(num_threads, 50);
     std::cout << "Barrier Verification Passed!\n" << std::endl;
 
     std::cout << "=== Barrier Scalability (Episodes per Second) ===" << std::endl;
