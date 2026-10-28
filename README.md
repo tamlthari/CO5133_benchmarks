@@ -43,14 +43,17 @@ Add to User Environment Variables (No Admin Rights Needed):
 
     Press Win + R, type sysdm.cpl, and press Enter.
 
-    If Windows prompts for an administrator password, cancel that dialog and instead search the Start Menu for "Edit environment variables for your account" and press Enter.
+    search the Start Menu for "Edit environment variables for your account" and press Enter.
 
     In the top section labeled User variables for <YourUsername>, select Path and click Edit... (or click New... if Path doesn't exist).
 
     Click New, paste:    C:\Users\<YourUsername>\mingw64\bin
 
 ### Install MPI on Windows
-download and run msmpisetup.exe and msmpisdk.msi directly from the official Microsoft Download Center).This installs:The runtime launcher mpiexec.exe to C:\Program Files\Microsoft MPI\Bin\.   The SDK headers (mpi.h) to C:\Program Files (x86)\Microsoft SDKs\MPI\Include\.   The 64-bit library (msmpi.lib) to C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64\.   Restart PowerShell after installation so the newly created environment paths ($env:MSMPI_INC and $env:MSMPI_LIB64) load into your session.
+download and run msmpisetup.exe and msmpisdk.msi directly from the official Microsoft Download Center).
+This installs:
+The runtime launcher mpiexec.exe to C:\Program Files\Microsoft MPI\Bin\.   The SDK headers (mpi.h) to C:\Program Files (x86)\Microsoft SDKs\MPI\Include\.   The 64-bit library (msmpi.lib) to C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64\.   
+Restart PowerShell after installation so the newly created environment paths ($env:MSMPI_INC and $env:MSMPI_LIB64) load into session.
 
 ### Build executables and run sample commands
 ```powershell
