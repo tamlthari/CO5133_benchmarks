@@ -1,0 +1,5 @@
+﻿threads,sense_barrier_episodes_sec,sense_backoff_episodes_sec,std_barrier_episodes_sec
+1,6.52061e+07,7.00869e+07,8.19524e+06
+2,2.25774e+07,9.45662e+06,6.4147e+06
+4,4.39688e+06,4.97181e+06,459247
+6,31.6241,32.7087,346730
